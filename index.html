@@ -2,110 +2,58 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>minesweeper</title>
+        <title>crackpanel</title>
         <link rel="stylesheet" href="stylesheet.css">
     </head>
-    <body onContextmenu="return false;">
+    <body>
         <div class="container">
             <div class="timer">
-                <p>残り時間: <span id="timer">100</span></p>
+                <p>残り時間: <span id="timer">20</span></p>
             </div>
-            <div class="buttons">
-                <button type="button" id="11">　</button>
-                <button type="button" id="21">　</button>
-                <button type="button" id="31">　</button>
-                <button type="button" id="41">　</button>
-                <button type="button" id="51">　</button>
-                <button type="button" id="61">　</button>
-                <button type="button" id="71">　</button>
-                <button type="button" id="81">　</button>
-                <button type="button" id="91">　</button>
+            <div class="nowplayer">
+                <p>現在のターン: プレイヤー<span id="nowplayer">0</span></p>
+            </div>
+            <div class="panels">
+                <div class="panel" id="00"></div>
+                <div class="panel" id="01"></div>
+                <div class="panel" id="02"></div>
+                <div class="panel" id="03"></div>
+                <div class="panel" id="04"></div>
                 <br>
-                <button type="button" id="12">　</button>
-                <button type="button" id="22">　</button>
-                <button type="button" id="32">　</button>
-                <button type="button" id="42">　</button>
-                <button type="button" id="52">　</button>
-                <button type="button" id="62">　</button>
-                <button type="button" id="72">　</button>
-                <button type="button" id="82">　</button>
-                <button type="button" id="92">　</button>
+                <div class="panel" id="10"></div>
+                <div class="panel" id="11"></div>
+                <div class="panel" id="12"></div>
+                <div class="panel" id="13"></div>
+                <div class="panel" id="14"></div>
                 <br>
-                <button type="button" id="13">　</button>
-                <button type="button" id="23">　</button>
-                <button type="button" id="33">　</button>
-                <button type="button" id="43">　</button>
-                <button type="button" id="53">　</button>
-                <button type="button" id="63">　</button>
-                <button type="button" id="73">　</button>
-                <button type="button" id="83">　</button>
-                <button type="button" id="93">　</button>
+                <div class="panel" id="20"></div>
+                <div class="panel" id="21"></div>
+                <div class="panel" id="22"></div>
+                <div class="panel" id="23"></div>
+                <div class="panel" id="24"></div>
                 <br>
-                <button type="button" id="14">　</button>
-                <button type="button" id="24">　</button>
-                <button type="button" id="34">　</button>
-                <button type="button" id="44">　</button>
-                <button type="button" id="54">　</button>
-                <button type="button" id="64">　</button>
-                <button type="button" id="74">　</button>
-                <button type="button" id="84">　</button>
-                <button type="button" id="94">　</button>
+                <div class="panel" id="30"></div>
+                <div class="panel" id="31"></div>
+                <div class="panel" id="32"></div>
+                <div class="panel" id="33"></div>
+                <div class="panel" id="34"></div>
                 <br>
-                <button type="button" id="15">　</button>
-                <button type="button" id="25">　</button>
-                <button type="button" id="35">　</button>
-                <button type="button" id="45">　</button>
-                <button type="button" id="55">　</button>
-                <button type="button" id="65">　</button>
-                <button type="button" id="75">　</button>
-                <button type="button" id="85">　</button>
-                <button type="button" id="95">　</button>
-                <br>
-                <button type="button" id="16">　</button>
-                <button type="button" id="26">　</button>
-                <button type="button" id="36">　</button>
-                <button type="button" id="46">　</button>
-                <button type="button" id="56">　</button>
-                <button type="button" id="66">　</button>
-                <button type="button" id="76">　</button>
-                <button type="button" id="86">　</button>
-                <button type="button" id="96">　</button>
-                <br>
-                <button type="button" id="17">　</button>
-                <button type="button" id="27">　</button>
-                <button type="button" id="37">　</button>
-                <button type="button" id="47">　</button>
-                <button type="button" id="57">　</button>
-                <button type="button" id="67">　</button>
-                <button type="button" id="77">　</button>
-                <button type="button" id="87">　</button>
-                <button type="button" id="97">　</button>
-                <br>
-                <button type="button" id="18">　</button>
-                <button type="button" id="28">　</button>
-                <button type="button" id="38">　</button>
-                <button type="button" id="48">　</button>
-                <button type="button" id="58">　</button>
-                <button type="button" id="68">　</button>
-                <button type="button" id="78">　</button>
-                <button type="button" id="88">　</button>
-                <button type="button" id="98">　</button>
-                <br>
-                <button type="button" id="19">　</button>
-                <button type="button" id="29">　</button>
-                <button type="button" id="39">　</button>
-                <button type="button" id="49">　</button>
-                <button type="button" id="59">　</button>
-                <button type="button" id="69">　</button>
-                <button type="button" id="79">　</button>
-                <button type="button" id="89">　</button>
-                <button type="button" id="99">　</button>
+                <div class="panel" id="40"></div>
+                <div class="panel" id="41"></div>
+                <div class="panel" id="42"></div>
+                <div class="panel" id="43"></div>
+                <div class="panel" id="44"></div>
                 <br>
             </div>
-            <div class="discription">
-                <h1>ルール説明</h1>
-                <p>10個の地雷を見つけてください。左ボタンでマスを開けて、右ボタンで旗を立てられます。</p>
-            </div>
+        </div>
+        <div class="discription">
+            <h1>ルール説明</h1>
+            <ul>
+                <li>このゲームは、プレイヤーが移動する中でパネルにダメージを与え、パネルが壊れて落下したら負けというゲームです。各パネルには最初HPが3あり、ダメージを受けてHPが2になると黄色、1になると赤、0になると黒になります。パネルのHPが0になると壊れて落下します。</li>
+                <li>上下左右に他のプレイヤーがいない場合、そこに移動できます。その際、パネルには1ダメージが入ります。</li>
+                <li>上下左右に他のプレイヤーがいて、その1つ先のパネルにプレイヤーがいない場合、プレイヤーを飛び越えてそこにジャンプできます。その際、パネルには２ダメージが入ります。</li>
+                <li>交互に移動ターンを繰り返し、落下せず最後まで生き残ったプレイヤーの勝利です。</li>
+            </ul>
         </div>
         <script src="app.js"></script>
     </body>
