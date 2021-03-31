@@ -29,6 +29,7 @@ let random_coordinate = [
 ];
 const MINE_QUANTITY = 10;
 
+// test
 //カウントダウンタイマー
 let TIMER;
 function countdown(){
