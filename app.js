@@ -1,8 +1,34 @@
+const numplayer = 4;
+const playerlist = ['A', 'B', 'C', 'D'];
 let nowplayer = 0;
-let playerposition = [
-    [0, 0],
-    [4, 4]
+
+const playerpositions = [
+    [[0, 0],[4, 4]],
+    [[0, 0],[0, 4], [4, 0]],
+    [[0, 0],[0, 4], [4, 0], [4, 4]]
 ];
+let playerposition = playerpositions[numplayer - 2];
+
+const playermaps = [
+    [[0, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, 1]],
+
+    [[0, -1, -1, -1, 1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [2, -1, -1, -1, -1]],
+
+    [[0, -1, -1, -1, 1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1],
+    [2, -1, -1, -1, 3]]
+];
+let playermap = playermaps[numplayer - 2];
 
 let panelmap = [
     [3, 3, 3, 3, 3],
@@ -12,26 +38,18 @@ let panelmap = [
     [3, 3, 3, 3, 3]
 ];
 
-let playermap = [
-    [ 0, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1],
-    [-1, -1, -1, -1,  1]
-];
-
 function paneldraw(){
     for(let i = 0; i < 5; i++){
         for(let j = 0; j < 5; j++){
             let obj = document.getElementById(String(i) + String(j));
             if(panelmap[i][j] === 3){
-                obj.style.backgroundColor = "white";
+                obj.style.backgroundColor = 'white';
             }else if(panelmap[i][j] === 2){
-                obj.style.backgroundColor = "yellow";
+                obj.style.backgroundColor = 'yellow';
             }else if(panelmap[i][j] === 1){
-                obj.style.backgroundColor = "red";
+                obj.style.backgroundColor = 'red';
             }else if(panelmap[i][j] === 0){
-                obj.style.backgroundColor = "gray";
+                obj.style.backgroundColor = 'gray';
             }
         }
     }
@@ -44,25 +62,24 @@ function playerdraw(){
             if(playermap[i][j] === -1){
                 obj.innerText = '　';
             }else if(playermap[i][j] === 0){
-                obj.innerText = '0';
+                obj.innerText = 'A';
             }else if(playermap[i][j] === 1){
-                obj.innerText = '1';
+                obj.innerText = 'B';
+            }else if(playermap[i][j] === 2){
+                obj.innerText = "C";
+            }else if(playermap[i][j] === 3){
+                obj.innerText = "D";
             }
-            // else if(playermap[i][j] === 2){
-            //     obj.innerText = "2";
-            // }else if(playermap[i][j] === 3){
-            //     obj.innerText = "3";
-            // }
         }
     }
 }
 
 function changeturn(){
     nowplayer++;
-    if(nowplayer > 1){
+    if(nowplayer >= numplayer){
         nowplayer = 0;
     }
-    document.getElementById('nowplayer').innerText = String(nowplayer);
+    document.getElementById('nowplayer').innerText = playerlist[nowplayer];
 }
 
 function canmove(x, y){
@@ -71,14 +88,14 @@ function canmove(x, y){
             return 1;
         }else if(distance(x, y) === 4){
             if(playerposition[nowplayer][0] === x){
-                let cy = Math.abs(playerposition[nowplayer][1] - y);
+                let cy = (playerposition[nowplayer][1] + y) / 2;
                 if(playermap[x][cy] !== -1){
-                    return 2;
+                    return 1;
                 }
             }else if(playerposition[nowplayer][1] === y){
-                let cx = Math.abs(playerposition[nowplayer][0] - x);
+                let cx = (playerposition[nowplayer][0] + x) / 2;
                 if(playermap[cx][y] !== -1){
-                    return 2;
+                    return 1;
                 }
             }
         }
@@ -99,21 +116,21 @@ function move(x, y){
 function damagepanel(i, x, y){
     panelmap[x][y] -= i;
     if(panelmap[x][y] <= 0){
-        window.alert('プレイヤー' + String(nowplayer) + 'の負けです！');
+        window.alert('プレイヤー' + playerlist[nowplayer] + 'の負けです！');
     }
 }
 
-//init
+//ゲーム開始時
 paneldraw();
 playerdraw();
 
 //マスが押されたら
 document.addEventListener('click',function(e){
     if(e.target.className === 'panel'){
-        let x = e.target.id[0]
-        let y = e.target.id[1]
+        let x = Number(e.target.id[0]);
+        let y = Number(e.target.id[1]);
         let i = canmove(x, y);
-        if(i === 1 || i === 2){
+        if(i === 1){
             move(x, y);
             damagepanel(i, x, y);
             paneldraw();
